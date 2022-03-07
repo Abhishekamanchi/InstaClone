@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+*:focus{
+    outline: none;
+}
+
+body{
+    width: 100vw;
+    background: #fafafa;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 50px;
+    background: #fff;
+    border-bottom: 1px solid #dfdfdf;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0;
+}
+.nav-wrapper{
+    width: 70%;
+    max-width: 1000px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo{
+    height: 100%;
+    margin-top: 5px;
+    cursor: pointer;
+}
+.search{
+    position: absolute;
+    left: 48%;
+    width: 230px;
+    height: 28px;
+    background: #fafafa;
+    border: 1px solid #dfdfdf;
+    border-radius: 2px;
+    text-align: center;
+    text-transform: capitalize;
+    transform: translateX(-50%)
+}
+
+.search::placeholder{
+    color: rgba(0, 0, 0, 0.5)
+}
+.home{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    margin: 0 10px;
+    display: inline-block;
+}
+.message{
+    height: 26px;
+    width: 27px;
+    cursor: pointer;
+    margin: 0 10px;
+    display: inline-block;
+}
+.explore{
+    height: 27px;
+    width: 27px;
+    cursor: pointer;
+    margin: 0 10px;
+    display: inline-block;
+}
+.heart{
+    height: 23px;
+    width: 23px;
+    cursor: pointer;
+    margin: 2px 10px;
+    display: inline-block;
+    filter: brightness(100%);
+}
+.nav-items{
+    height: 22px;
+    position: relative;
+    margin-right: 2%;
+}
+
+.user-profile{
+    width: 25px;
+    height: 26px;
+    border-radius: 50%;
+    margin: 1px 10px;
+    display: inline-block;
+    background-size: cover;
+}
+.main{
+    width: 100%;
+    padding: 40px 0;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.wrapper{
+    width: 70%;
+    max-width: 1000px;
+    display:grid;
+    grid-template-columns: 60% 40%;
+    grid-gap: 30px;
+}
+.left-col{
+    display: flex;
+    flex-direction: column;
+}
+.status-wrapper{
+    width: 100%;
+    height: 120px;
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    border-radius: 1px;
+    padding: 10px;
+    padding-right: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    overflow-x: auto;
+    
+}
+.status-wrapper::-webkit-scrollbar{
+    display: none;
+}
+
+.status-card{
+    flex: 0 0 auto;
+    width: 80px;
+    max-width: 80pc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+    cursor: pointer;
+}
+.profile-pic{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 2px;
+    background: linear-gradient(45deg, rgb(255, 230, 0), rgb(255, 6, 128) 30%);
+}
+.profile-pic img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+.username{
+    width: 100%;
+    overflow: hidden;
+    text-align: center;
+    font-size: 12px;
+    margin-top: 5px;
+    color: rgba(0, 0, 0, 0.8);
+}
+.post .info .user .username{
+    font-size: 13px;
+}
+.post{
+    width: 100%;
+    height: auto;
+    background: #fff;
+    border: 1px solid #dfdfdf;
+    margin-top: 40px;
+}
+.info{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+.info .user{
+    width: auto;
+    font-weight: bold;
+    color: #000;
+    font-size: 14px;
+    margin-left: -4px;
+    cursor: pointer;
+    
+}
+.info .option{
+    height: 19px;
+    cursor: pointer;
+    margin-right: -8px;
+}
+.info .user{
+    display: flex;
+    align-items: center;
+}
+.info .profile-pic{
+    height: 40px;
+    width: 54px;
+    padding: 0;
+    background: none;
+    /* margin-left: -8px; */
+}
+.info .profile-pic img{
+    background: none;
+}
+.post-img{
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+.post-content{
+    width: 100%;
+    padding: 20px;
+}
+.likes{
+    font-weight: bold;
+    cursor: pointer;
+}
+.dsc{
+    margin: 10px 0;
+    font-size: 14px;
+    line-height: 20px;
+    cursor: text;
+}
+.dsc span{
+    font-weight: bold;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.post-time{
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    cursor: pointer;
+}
+.comment-wrapper{
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+    border-radius: 1px solid #dfdfdf;
+    display: flex;
+    align-items: center;
+    border: #dfdfdf;
+}
+.smile-icon{
+    width: 25px;
+    height: 25px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+.comment-box{
+    width: 80%;
+    height: 18px !important;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    margin-left: 5px;
+}
+.comment-btn{
+    width: 70px;
+    height: 100px;
+    background: none;
+    border: none;
+    outline: none;
+    text-transform: capitalize;
+    font-size: 16px;
+    color: rgb(0, 162, 255);
+    opacity: 0.5;
+}
+.reaction-wrapper{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    margin-top: -22px;
+    align-items: center;
+}
+.hrt-icon{
+    height: 30px;
+    margin: 0;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.cmnt-icon{
+    height: 28px;
+    margin: 0;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.send-message{
+    height: 28px;
+    margin: 0;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.save-icon{
+    height: 34px;
+    margin: 0;
+    margin-left: auto;
+    cursor: pointer;
+}
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-wrapper">
+            <img src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png" alt="logo"
+                class="logo">
+            <input type="text" class="search" placeholder="search">
+            <div class="nav-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNwH3tvDJ_hN4-N4yLdmnt0jPz_-Sh1zH6fw&usqp=CAU"
+                    class="home" alt="home">
+                <img src="https://static.thenounproject.com/png/3084968-200.png" class="message" alt="message">
+                <img src="https://www.lamar.edu/career-and-testing-services/_files/images/icons/iconfinder_90_compass_183404.png"
+                    class="explore" alt="explore">
+                <img src="https://p.kindpng.com/picc/s/169-1694281_heart-symbol-computer-icons-heart-icon-instagram-png.png"
+                    class="heart" alt="heart">
+                <img src="https://www.delhi-magazine.com/wp-content/uploads/2019/04/most-handsome-actor-in-south-industry-vijay-devarkonda-561x640.jpg"
+                    class="user-profile" alt="user-profile">
+            </div>
+
+        </div>
+    </nav>
+    <section class="main">
+        <div class="wrapper">
+            <div class="left-col">
+                <div class="status-wrapper">
+                    <div class="status-card">
+                        <div class="profile-pic"><img
+                                src="https://i.pinimg.com/736x/73/15/fb/7315fb10a4db4a39e62ecc24e713cba0.jpg" alt="#">
+                        </div>
+                        <p class="username">romanreigns</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img
+                                src="https://www.boldsky.com/img/2021/05/339a2ad1-642d-475a-a743-358ae0abb2ca-1621844808.jpeg"
+                                alt="#"></div>
+                        <p class="username">kajalaggarwal</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img
+                                src="https://1.bp.blogspot.com/-8Y3bjUPiuYE/Xja34-N5L0I/AAAAAAAANx8/s5qWLqDoY2gSLUpOebxSk_BbGTt2ro8sgCLcBGAsYHQ/s1600/Keerthi%2BSuresh%2BHD%2BPhotos%2B%25283%2529.jpg"
+                                alt="#"></div>
+                        <p class="username">keerthysuresh</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img
+                                src="https://iphonewallpaperworld.com/wp-content/uploads/2021/06/Prabhas-Wallpaper-june-1-2021-3.jpg"
+                                alt="#"></div>
+                        <p class="username">prabhas</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img
+                                src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Vijay_Deverakonda_at_NOTA_pressmeet_%28cropped%29.jpg"
+                                alt="#"></div>
+                        <p class="username">vijay</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img
+                                src="https://cdn.myimgstock.com/myimgstock/preview/hot-samantha-akkineni-full-hd-images-photos-141-11601447368tw7sk9iclq.jpg"
+                                alt="#"></div>
+                        <p class="username">samantharuthprabhu</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img
+                                src="https://www.koimoi.com/wp-content/new-galleries/2021/08/kiara-advani-delivers-a-stellar-performance-in-shershaah-001.jpg"
+                                alt="#"></div>
+                        <p class="username">kiaraaadvani</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img
+                                src="https://media.gettyimages.com/photos/rohit-sharma-of-india-celebrates-his-century-during-the-group-stage-picture-id1153894623?s=612x612"
+                                alt="#"></div>
+                        <p class="username">rohitsharma45</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="profile-pic"><img
+                                src="https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2018/12/22/Photos/Processed/rajini-kSWE--621x414@LiveMint.JPG"
+                                alt="#"></div>
+                        <p class="username">rajanikanth</p>
+                    </div>
+
+                </div>
+
+                <div class="post">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://i.pinimg.com/736x/73/15/fb/7315fb10a4db4a39e62ecc24e713cba0.jpg" alt="profile"></div>
+                            <p class="username">romanreigns</p>
+                        </div>
+                        <img src="https://i.stack.imgur.com/4MEQw.png" class="option" alt="option">
+                    </div>
+                    <img src="https://i.pinimg.com/736x/73/15/fb/7315fb10a4db4a39e62ecc24e713cba0.jpg" class="post-img" alt="post">
+                    <div></div>
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="https://www.iconpacks.net/icons/1/free-heart-icon-492-thumb.png" class="hrt-icon" alt="heart">
+                            <img src="https://www.pngitem.com/pimgs/m/21-212930_transparent-square-speech-bubble-png-transparent-instagram-comment.png" class="cmnt-icon" alt="commentlogo">
+                            <img src="https://image.flaticon.com/icons/png/512/786/786205.png" class="send-message" alt="send-message">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/save-3244517-2701888.png" class="save-icon" alt="save">
+                        </div>
+                        <p class="likes">3,053 likes</p>
+                        <p class="dsc"><span>username</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam a praesentium nemo illum sunt adipisci?</p>
+                        <p class="post-time">2 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="https://www.freepnglogos.com/uploads/smile-png/smile-svg-png-icon-download-29.png" class="smile-icon" alt="smile">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://www.boldsky.com/img/2021/05/339a2ad1-642d-475a-a743-358ae0abb2ca-1621844808.jpeg" alt="profile"></div>
+                            <p class="username">kajalaggarwal</p>
+                        </div>
+                        <img src="https://i.stack.imgur.com/4MEQw.png" class="option" alt="option">
+                    </div>
+                    <img src="https://www.boldsky.com/img/2021/05/339a2ad1-642d-475a-a743-358ae0abb2ca-1621844808.jpeg" class="post-img" alt="post">
+                    <div></div>
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="https://www.iconpacks.net/icons/1/free-heart-icon-492-thumb.png" class="hrt-icon" alt="heart">
+                            <img src="https://www.pngitem.com/pimgs/m/21-212930_transparent-square-speech-bubble-png-transparent-instagram-comment.png" class="cmnt-icon" alt="commentlogo">
+                            <img src="https://image.flaticon.com/icons/png/512/786/786205.png" class="send-message" alt="send-message">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/save-3244517-2701888.png" class="save-icon" alt="save">
+                        </div>
+                        <p class="likes">3,053 likes</p>
+                        <p class="dsc"><span>kajalaggarwal</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam a praesentium nemo illum sunt adipisci?</p>
+                        <p class="post-time">2 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="https://www.freepnglogos.com/uploads/smile-png/smile-svg-png-icon-download-29.png" class="smile-icon" alt="smile">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://1.bp.blogspot.com/-8Y3bjUPiuYE/Xja34-N5L0I/AAAAAAAANx8/s5qWLqDoY2gSLUpOebxSk_BbGTt2ro8sgCLcBGAsYHQ/s1600/Keerthi%2BSuresh%2BHD%2BPhotos%2B%25283%2529.jpg" alt="profile"></div>
+                            <p class="username">keerthysuresh</p>
+                        </div>
+                        <img src="https://i.stack.imgur.com/4MEQw.png" class="option" alt="option">
+                    </div>
+                    <img src="https://1.bp.blogspot.com/-8Y3bjUPiuYE/Xja34-N5L0I/AAAAAAAANx8/s5qWLqDoY2gSLUpOebxSk_BbGTt2ro8sgCLcBGAsYHQ/s1600/Keerthi%2BSuresh%2BHD%2BPhotos%2B%25283%2529.jpg" class="post-img" alt="post">
+                    <div></div>
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="https://www.iconpacks.net/icons/1/free-heart-icon-492-thumb.png" class="hrt-icon" alt="heart">
+                            <img src="https://www.pngitem.com/pimgs/m/21-212930_transparent-square-speech-bubble-png-transparent-instagram-comment.png" class="cmnt-icon" alt="commentlogo">
+                            <img src="https://image.flaticon.com/icons/png/512/786/786205.png" class="send-message" alt="send-message">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/save-3244517-2701888.png" class="save-icon" alt="save">
+                        </div>
+                        <p class="likes">3,053 likes</p>
+                        <p class="dsc"><span>keerthysuresh</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam a praesentium nemo illum sunt adipisci?</p>
+                        <p class="post-time">2 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="https://www.freepnglogos.com/uploads/smile-png/smile-svg-png-icon-download-29.png" class="smile-icon" alt="smile">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://iphonewallpaperworld.com/wp-content/uploads/2021/06/Prabhas-Wallpaper-june-1-2021-3.jpg" alt="profile"></div>
+                            <p class="username">prabhas</p>
+                        </div>
+                        <img src="https://i.stack.imgur.com/4MEQw.png" class="option" alt="option">
+                    </div>
+                    <img src="https://iphonewallpaperworld.com/wp-content/uploads/2021/06/Prabhas-Wallpaper-june-1-2021-3.jpg" class="post-img" alt="post">
+                    <div></div>
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="https://www.iconpacks.net/icons/1/free-heart-icon-492-thumb.png" class="hrt-icon" alt="heart">
+                            <img src="https://www.pngitem.com/pimgs/m/21-212930_transparent-square-speech-bubble-png-transparent-instagram-comment.png" class="cmnt-icon" alt="commentlogo">
+                            <img src="https://image.flaticon.com/icons/png/512/786/786205.png" class="send-message" alt="send-message">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/save-3244517-2701888.png" class="save-icon" alt="save">
+                        </div>
+                        <p class="likes">3,053 likes</p>
+                        <p class="dsc"><span>prabhas</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam a praesentium nemo illum sunt adipisci?</p>
+                        <p class="post-time">2 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="https://www.freepnglogos.com/uploads/smile-png/smile-svg-png-icon-download-29.png" class="smile-icon" alt="smile">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Vijay_Deverakonda_at_NOTA_pressmeet_%28cropped%29.jpg" alt="profile"></div>
+                            <p class="username">vijay</p>
+                        </div>
+                        <img src="https://i.stack.imgur.com/4MEQw.png" class="option" alt="option">
+                    </div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/Vijay_Deverakonda_at_NOTA_pressmeet_%28cropped%29.jpg" class="post-img" alt="post">
+                    <div></div>
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="https://www.iconpacks.net/icons/1/free-heart-icon-492-thumb.png" class="hrt-icon" alt="heart">
+                            <img src="https://www.pngitem.com/pimgs/m/21-212930_transparent-square-speech-bubble-png-transparent-instagram-comment.png" class="cmnt-icon" alt="commentlogo">
+                            <img src="https://image.flaticon.com/icons/png/512/786/786205.png" class="send-message" alt="send-message">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/save-3244517-2701888.png" class="save-icon" alt="save">
+                        </div>
+                        <p class="likes">3,053 likes</p>
+                        <p class="dsc"><span>vijay</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam a praesentium nemo illum sunt adipisci?</p>
+                        <p class="post-time">2 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="https://www.freepnglogos.com/uploads/smile-png/smile-svg-png-icon-download-29.png" class="smile-icon" alt="smile">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://cdn.myimgstock.com/myimgstock/preview/hot-samantha-akkineni-full-hd-images-photos-141-11601447368tw7sk9iclq.jpg" alt="profile"></div>
+                            <p class="username">samantharuthprabhu</p>
+                        </div>
+                        <img src="https://i.stack.imgur.com/4MEQw.png" class="option" alt="option">
+                    </div>
+                    <img src="https://cdn.myimgstock.com/myimgstock/preview/hot-samantha-akkineni-full-hd-images-photos-141-11601447368tw7sk9iclq.jpg" class="post-img" alt="post">
+                    <div></div>
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="https://www.iconpacks.net/icons/1/free-heart-icon-492-thumb.png" class="hrt-icon" alt="heart">
+                            <img src="https://www.pngitem.com/pimgs/m/21-212930_transparent-square-speech-bubble-png-transparent-instagram-comment.png" class="cmnt-icon" alt="commentlogo">
+                            <img src="https://image.flaticon.com/icons/png/512/786/786205.png" class="send-message" alt="send-message">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/save-3244517-2701888.png" class="save-icon" alt="save">
+                        </div>
+                        <p class="likes">3,053 likes</p>
+                        <p class="dsc"><span>samantharuthprabhu</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam a praesentium nemo illum sunt adipisci?</p>
+                        <p class="post-time">2 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="https://www.freepnglogos.com/uploads/smile-png/smile-svg-png-icon-download-29.png" class="smile-icon" alt="smile">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://www.koimoi.com/wp-content/new-galleries/2021/08/kiara-advani-delivers-a-stellar-performance-in-shershaah-001.jpg" alt="profile"></div>
+                            <p class="username">kiaraaadvani</p>
+                        </div>
+                        <img src="https://i.stack.imgur.com/4MEQw.png" class="option" alt="option">
+                    </div>
+                    <img src="https://www.koimoi.com/wp-content/new-galleries/2021/08/kiara-advani-delivers-a-stellar-performance-in-shershaah-001.jpg" class="post-img" alt="post">
+                    <div></div>
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="https://www.iconpacks.net/icons/1/free-heart-icon-492-thumb.png" class="hrt-icon" alt="heart">
+                            <img src="https://www.pngitem.com/pimgs/m/21-212930_transparent-square-speech-bubble-png-transparent-instagram-comment.png" class="cmnt-icon" alt="commentlogo">
+                            <img src="https://image.flaticon.com/icons/png/512/786/786205.png" class="send-message" alt="send-message">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/save-3244517-2701888.png" class="save-icon" alt="save">
+                        </div>
+                        <p class="likes">3,053 likes</p>
+                        <p class="dsc"><span>kiaraaadvani</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam a praesentium nemo illum sunt adipisci?</p>
+                        <p class="post-time">2 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="https://www.freepnglogos.com/uploads/smile-png/smile-svg-png-icon-download-29.png" class="smile-icon" alt="smile">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://media.gettyimages.com/photos/rohit-sharma-of-india-celebrates-his-century-during-the-group-stage-picture-id1153894623?s=612x612" alt="profile"></div>
+                            <p class="username">rohitsharma45</p>
+                        </div>
+                        <img src="https://i.stack.imgur.com/4MEQw.png" class="option" alt="option">
+                    </div>
+                    <img src="https://media.gettyimages.com/photos/rohit-sharma-of-india-celebrates-his-century-during-the-group-stage-picture-id1153894623?s=612x612" class="post-img" alt="post">
+                    <div></div>
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="https://www.iconpacks.net/icons/1/free-heart-icon-492-thumb.png" class="hrt-icon" alt="heart">
+                            <img src="https://www.pngitem.com/pimgs/m/21-212930_transparent-square-speech-bubble-png-transparent-instagram-comment.png" class="cmnt-icon" alt="commentlogo">
+                            <img src="https://image.flaticon.com/icons/png/512/786/786205.png" class="send-message" alt="send-message">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/save-3244517-2701888.png" class="save-icon" alt="save">
+                        </div>
+                        <p class="likes">3,053 likes</p>
+                        <p class="dsc"><span>rohitsharma45</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam a praesentium nemo illum sunt adipisci?</p>
+                        <p class="post-time">2 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="https://www.freepnglogos.com/uploads/smile-png/smile-svg-png-icon-download-29.png" class="smile-icon" alt="smile">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+                <div class="post">
+                    <div class="info">
+                        <div class="user">
+                            <div class="profile-pic"><img src="https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2018/12/22/Photos/Processed/rajini-kSWE--621x414@LiveMint.JPG" alt="profile"></div>
+                            <p class="username">rajanikanth</p>
+                        </div>
+                        <img src="https://i.stack.imgur.com/4MEQw.png" class="option" alt="option">
+                    </div>
+                    <img src="https://images.livemint.com/rf/Image-621x414/LiveMint/Period2/2018/12/22/Photos/Processed/rajini-kSWE--621x414@LiveMint.JPG" class="post-img" alt="post">
+                    <div></div>
+                    <div class="post-content">
+                        <div class="reaction-wrapper">
+                            <img src="https://www.iconpacks.net/icons/1/free-heart-icon-492-thumb.png" class="hrt-icon" alt="heart">
+                            <img src="https://www.pngitem.com/pimgs/m/21-212930_transparent-square-speech-bubble-png-transparent-instagram-comment.png" class="cmnt-icon" alt="commentlogo">
+                            <img src="https://image.flaticon.com/icons/png/512/786/786205.png" class="send-message" alt="send-message">
+                            <img src="https://cdn.iconscout.com/icon/free/png-256/save-3244517-2701888.png" class="save-icon" alt="save">
+                        </div>
+                        <p class="likes">3,053 likes</p>
+                        <p class="dsc"><span>rajanikanth</span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam a praesentium nemo illum sunt adipisci?</p>
+                        <p class="post-time">2 minutes ago</p>
+                    </div>
+                    <div class="comment-wrapper">
+                        <img src="https://www.freepnglogos.com/uploads/smile-png/smile-svg-png-icon-download-29.png" class="smile-icon" alt="smile">
+                        <input type="text" class="comment-box" placeholder="Add a comment">
+                        <button class="comment-btn">post</button>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="right-col">
+
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
